@@ -1,0 +1,27 @@
+.btn {
+    border: 1px solid #034EA2;
+    height: 40px;
+    width: 110px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color:  #034EA2;
+    color: #FFFFFF;
+}
+
+.btn-secondary {
+    background-color:  #FFFFFF;
+    color: #034EA2;
+}
+
+.btn-circle {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    background-color: #034EA2;
+    color: #FFFFFF;
+}
