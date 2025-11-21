@@ -4,27 +4,17 @@ type ButtonProps = {
     text: string;
     type: 'primary' | 'secondary';
     shape?: 'circle' | 'regular';
+    handleClick: () => void;
 }
 
-const Button = ({text, type, shape}: ButtonProps) => {
-    // let style = {
-    //     'background-color':  '#034EA2',
-    //     'color': '#FFFFFF'
-    // };
-
-    // if(type === 'secondary') {
-    //     style['background-color']= '#FFFFFF';
-    //     style['color']= '#034EA2';
-    // }
-
+const Button = ({text, type, shape, handleClick}: ButtonProps) => {
     const styles = `btn btn-${type} btn-${shape}`
 
     return (
         <div>
             <button
                 className={styles}
-                //className={shape === 'circle' ? 'btn btn-circle' : 'btn'}
-                // style={style}
+                onClick={handleClick}
             >{text}</button>
         </div>
     )
