@@ -1,0 +1,30 @@
+import type { Todo } from "../features/components/todo-item/TodoItem"
+
+export type Action = { type: 'ADD_TODO'; payload: Todo }
+            | { type: 'EDIT_TODO'; payload: Todo }
+            | { type: 'DELETE_TODO'; payload: string };
+
+export function todosReducer(state: Todo[], action: Action): Todo[] {
+    switch(action.type) {
+        case 'ADD_TODO':
+            return [...state, action.payload]
+
+        case 'EDIT_TODO':
+            return state.map(todo => {
+                if(todo.id === action.payload.id) {
+                    return {
+                        ...todo,
+                        status: action.payload.status
+                    }
+                } else {
+                    return todo;
+                }
+            })
+
+        case 'DELETE_TODO':
+            return state.filter(todo => todo.id !== action.payload)
+
+        default:
+            return state
+    }
+}
