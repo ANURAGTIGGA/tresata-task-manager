@@ -7,16 +7,15 @@ type ButtonProps = {
     handleClick: () => void;
 }
 
-const Button = ({text, type, shape, handleClick}: ButtonProps) => {
+const Button = ({text, type, shape='regular', handleClick}: ButtonProps) => {
     const styles = `btn btn-${type} btn-${shape}`
 
     return (
-        <div>
-            <button
-                className={styles}
-                onClick={handleClick}
-            >{text}</button>
-        </div>
+        <button
+            className={styles}
+            onClick={handleClick}
+        >{text}
+        </button>
     )
 }
 

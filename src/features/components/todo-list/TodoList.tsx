@@ -1,42 +1,38 @@
 import { useState } from "react";
+import TodoItem, { type Todo } from "../todo-item/TodoItem";
 
-type Todo = {
-    id: string;
-    title: string;
-    description: string;
-    status: 'in-progress' | 'pending' | 'completed';
-    created?: Date;
-}
-
-const initialData = [
+const initialData: Todo[] = [
     {
         id:"01",
         title: "Lorem ipsum",
         description: "some dummy text",
         status: 'in-progress',
-        created: '12-12-2024'
+        created: new Date('12-12-2024')
     },
     {
         id:"02",
         title: "Lorem ipsum second",
         description: "some dummy text second",
-        status: 'in-progress',
-        created: '12-12-2024'
+        status: 'pending',
+        created: new Date('12-12-2024')
+    },
+    {
+        id:"03",
+        title: "Lorem ipsum third",
+        description: "some dummy text third",
+        status: 'completed',
+        created: new Date('12-12-2024')
     }
 ]
 
 const TodoList = () => {
-    const [todos, setTodos] = useState(initialData);
+    const [todos, setTodos] = useState<Todo[]>(initialData);
 
     return (
         <ul>
             {
                 todos && todos.map(todo => (
-                    <li key={todo.id}>
-                        <div>{todo.title}</div>
-                        <div>{todo.description}</div>
-                        <div>{todo.created}</div>
-                    </li>
+                    <TodoItem {...todo} />
                 ))
             }
         </ul>
