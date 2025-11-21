@@ -28,3 +28,27 @@ export function todosReducer(state: Todo[], action: Action): Todo[] {
             return state
     }
 }
+
+export const initialData: Todo[] = [
+    {
+        id:"01",
+        title: "Lorem ipsum",
+        description: "some dummy text",
+        status: 'in-progress',
+        created: new Date('12-12-2024')
+    },
+    {
+        id:"02",
+        title: "Lorem ipsum second",
+        description: "some dummy text second",
+        status: 'pending',
+        created: new Date('12-12-2024')
+    },
+    {
+        id:"03",
+        title: "Lorem ipsum third",
+        description: "some dummy text third",
+        status: 'completed',
+        created: new Date('12-12-2024')
+    }
+]

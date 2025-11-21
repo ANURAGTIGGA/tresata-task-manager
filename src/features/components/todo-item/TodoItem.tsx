@@ -12,7 +12,7 @@ export type Todo = {
 const TodoItem = (todo: Todo) => {
     const dateObj = new Intl.DateTimeFormat(undefined, {year:'numeric', month:'short', day:'numeric'})
   return (
-    <li className="todo-item" key={todo.id}>
+    <li className="todo-item">
         <div className="todo-header">
             <div className='todo-logo'>
                 <span>{todo.title.split('')[0]}</span>
