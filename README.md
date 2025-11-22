@@ -13,7 +13,7 @@ Clone this repo
 
 Make sure you use node version 20 or higher
 
-Run the following command one after the other
+Run the following commands one after the other
 
 ```js
 npm install
