@@ -39,7 +39,7 @@ const TodoItem = ({id, title, description, status, created, onEdit}: TodoItemPro
             </div>
             <div className='todo-desc'>{description}</div>
             <div className='todo-footer'>
-                <div className='todo-created'>{dateObj.format(created)}</div>
+                <div className='todo-created'>{dateObj.format(new Date(created))}</div>
                 <div className='todo-actions'>
                     <button className='todo-action-edit' onClick={()=>onEdit(id)}>
                         <MdOutlineEdit />

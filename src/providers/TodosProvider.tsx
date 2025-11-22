@@ -7,7 +7,7 @@ export const TodoStateContext = createContext<Todo[] | null>(null);
 export const TodoDispatchContext = createContext<React.ActionDispatch<[action: Action]> | null>(null);
 
 export function TodosProvider({children}: {children: ReactNode}) {
-    const [state, dispatch] = useReducer(todosReducer, []);
+    const [state, dispatch] = useReducer(todosReducer, initialData);
 
     return (
         <TodoStateContext value={state}>

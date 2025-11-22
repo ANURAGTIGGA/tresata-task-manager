@@ -7,10 +7,12 @@ export type Action = { type: 'ADD_TODO'; payload: Todo }
 export function todosReducer(state: Todo[], action: Action): Todo[] {
     switch(action.type) {
         case 'ADD_TODO':
-            return [...state, action.payload]
+            const todos = [...state, action.payload]
+            localStorage.setItem('todos', JSON.stringify(todos));
+            return todos
 
         case 'EDIT_TODO':
-            return state.map(todo => {
+            const editedTodos = state.map(todo => {
                 if(todo.id === action.payload.id) {
                     return {
                         ...todo,
@@ -22,35 +24,17 @@ export function todosReducer(state: Todo[], action: Action): Todo[] {
                     return todo;
                 }
             })
+            localStorage.setItem('todos', JSON.stringify(editedTodos));
+            return editedTodos;
 
         case 'DELETE_TODO':
-            return state.filter(todo => todo.id !== action.payload)
+            const updatedTodos = state.filter(todo => todo.id !== action.payload)
+            localStorage.setItem('todos', JSON.stringify(updatedTodos));
+            return updatedTodos
 
         default:
             return state
     }
 }
 
-export const initialData: Todo[] = [
-    {
-        id:"01",
-        title: "Lorem ipsum",
-        description: "some dummy text",
-        status: 'in-progress',
-        created: new Date('12-12-2024')
-    },
-    {
-        id:"02",
-        title: "Lorem ipsum second",
-        description: "some dummy text second",
-        status: 'pending',
-        created: new Date('12-12-2024')
-    },
-    {
-        id:"03",
-        title: "Lorem ipsum third",
-        description: "some dummy text third",
-        status: 'completed',
-        created: new Date('12-12-2024')
-    }
-]
+export const initialData: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos') as string) : []
