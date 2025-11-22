@@ -25,9 +25,12 @@ const Search = ({placeholder, handleSearchText}: SearchProps) => {
         placeholder={placeholder}
         onChange={(e)=>setText(e.target.value)}
         />
-      <span className="close">
-        <IoIosClose />
-      </span>
+      {
+        text && text.length > 1 ? 
+          <span className="close" onClick={()=>setText('')}>
+            <IoIosClose />
+          </span> : null
+      }
     </div>
   )
 }

@@ -1,4 +1,5 @@
 textarea {
+    font-family: 'Jost-Regular', sans-serif;
     width: 100%;
     height: 150px;
     border-color: #DDDDDD;
@@ -8,10 +9,16 @@ textarea {
 }
 
 input#todo-title {
+    font-family: 'Jost-Regular', sans-serif;
     padding-left: 1rem;
 }
 
 .actions {
     display: flex;
     justify-content: space-between;
+}
+
+input::placeholder, textarea::placeholder {
+    font-family: 'Jost-Regular', sans-serif;
+    font-size: 0.75rem;
 }
