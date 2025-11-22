@@ -4,13 +4,14 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 type HeaderProp = {
     title: string;
+    onBack: () => void;
     icon?: string | null;
 }
 
-const Header = ({title, icon}: HeaderProp) => {
+const Header = ({title, onBack, icon}: HeaderProp) => {
   return (
     <header>
-      {icon === 'back' && <IoArrowBackOutline />}
+      {icon === 'back' && <span className='back-icon' onClick={onBack}><IoArrowBackOutline /></span>}
       <span>{title}</span>
     </header>
   )

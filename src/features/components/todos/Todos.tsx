@@ -29,7 +29,6 @@ const Todos = () => {
   }
 
   function handleEditFormOpen(id: string): void {
-    console.log("edit clicked in todos", id)
     setHeaderText("Edit Task");
     setIcon("back");
     setEditFormId(id);
@@ -37,7 +36,7 @@ const Todos = () => {
   
   return (
     <>
-        <Header title={headerText} icon={icon} />
+        <Header title={headerText} icon={icon} onBack={handleFromClose} />
         <div className='todos-container'>
           {
             showForm || editFormId ? null : <Search placeholder='Search To-Do' handleSearchText={setSearchText} />

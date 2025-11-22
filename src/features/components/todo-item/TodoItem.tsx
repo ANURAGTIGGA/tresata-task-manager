@@ -3,6 +3,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import './todoItem.css'
 import { useDispatch } from '../../../shared/hooks';
+import { useState } from 'react'
+import Loader from '../../../shared/components/loader/Loader';
 
 export type Todo = {
     id: string;
@@ -17,14 +19,22 @@ type TodoItemProp = {
 } & Todo;
 
 const TodoItem = ({id, title, description, status, created, onEdit}: TodoItemProp) => {
+    const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
     const dateObj = new Intl.DateTimeFormat(undefined, {year:'numeric', month:'short', day:'numeric'});
 
     function handleDeleteTodo(id: string) {
         if(dispatch) {
-            dispatch({ type: 'DELETE_TODO', payload: id });
+            setLoader(true);
+            setTimeout(()=>{
+                dispatch({ type: 'DELETE_TODO', payload: id });
+                setLoader(false);
+            }, 250)
         }
     }
+
+    if(loader)
+        return <Loader />
 
     return (
         <li className="todo-item">

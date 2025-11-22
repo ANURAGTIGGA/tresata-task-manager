@@ -5,6 +5,7 @@ import './add-todo.css'
 import type { Todo } from '../todo-item/TodoItem';
 import type { Status } from '../todo-list/TodoList';
 import Dropdown from '../../../shared/components/dropdown/Dropdown';
+import Loader from '../../../shared/components/loader/Loader';
 
 type AddTodoProps = {
     handleFromClose: () => void
@@ -26,6 +27,8 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
   const [description, setDescription] = useState(selectedTodo?.description || '');
   const [status, setStatus] = useState<Status | undefined>(selectedTodo?.status || undefined);
 
+  const [loader, setLoader] = useState(false);
+
   const dispatch = useDispatch();
 
   function handleStatusChange(value: string) {
@@ -42,8 +45,12 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
     }
 
     if(dispatch) {
-       dispatch({ type: 'ADD_TODO', payload });
-       handleFromClose()
+      setLoader(true);
+      setTimeout(()=>{
+        dispatch({ type: 'ADD_TODO', payload });
+        handleFromClose();
+        setLoader(false);
+      }, 300)
     }
   }
 
@@ -57,11 +64,22 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
       }
 
       if(dispatch) {
-        dispatch({ type: 'EDIT_TODO', payload });
-        handleFromClose()
+        setLoader(true);
+        setTimeout(()=>{
+          dispatch({ type: 'EDIT_TODO', payload });
+          handleFromClose();
+          setLoader(false);
+      }, 300)
       }
     }
   }
+
+  if(loader)
+    return <>
+      <Loader />
+      <Loader />
+      <Loader />
+    </>
 
   return (
     <div className='add-todo-container'>
