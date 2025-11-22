@@ -9,10 +9,14 @@
 
 .todos-list {
     flex: 1;
+    margin-bottom: 5rem;
 }
 
 .add-todo {
-    text-align: right;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
 }
 
 .add-todo button {

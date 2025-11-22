@@ -5,6 +5,12 @@
     border-bottom: 1px solid #DDDDDD;
 }
 
+.todo-item:hover {
+    background-color: #F7F7F7;
+    border-radius: 3px;
+    border-bottom: 0;
+}
+
 .todo-header {
     display: flex;
     gap: 1rem;
