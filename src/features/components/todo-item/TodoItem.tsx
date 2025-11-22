@@ -21,7 +21,15 @@ type TodoItemProp = {
 const TodoItem = ({id, title, description, status, created, onEdit}: TodoItemProp) => {
     const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
-    const dateObj = new Intl.DateTimeFormat(undefined, {year:'numeric', month:'short', day:'numeric'});
+    const dateObj = new Intl.DateTimeFormat(undefined, {weekday: 'short', year:'numeric', month:'long', day:'2-digit'});
+
+    function formatDate(datestr: string): string {
+        const arr = datestr.split(' ');
+        const day = arr[1];
+        arr[1] = `${day},`;
+        
+        return arr.join(' ');
+    }
 
     function handleDeleteTodo(id: string) {
         if(dispatch) {
@@ -49,7 +57,7 @@ const TodoItem = ({id, title, description, status, created, onEdit}: TodoItemPro
             </div>
             <div className='todo-desc'>{description}</div>
             <div className='todo-footer'>
-                <div className='todo-created'>{dateObj.format(new Date(created))}</div>
+                <div className='todo-created'>{formatDate(dateObj.format(new Date(created)))}</div>
                 <div className='todo-actions'>
                     <button className='todo-action-edit' onClick={()=>onEdit(id)}>
                         <MdOutlineEdit />
