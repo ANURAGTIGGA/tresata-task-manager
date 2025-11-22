@@ -4,6 +4,7 @@ import { useDispatch, useTodos } from "../../../shared/hooks";
 import './add-todo.css'
 import type { Todo } from '../todo-item/TodoItem';
 import type { Status } from '../todo-list/TodoList';
+import Dropdown from '../../../shared/components/dropdown/Dropdown';
 
 type AddTodoProps = {
     handleFromClose: () => void
@@ -26,6 +27,10 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
   const [status, setStatus] = useState<Status | undefined>(selectedTodo?.status || undefined);
 
   const dispatch = useDispatch();
+
+  function handleStatusChange(value: string) {
+    setStatus(value as Status);
+  }
 
   function onTodoAdd() {
     const payload: Todo = {
@@ -76,19 +81,11 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
         {
           isEdit ? 
           <div className='todo-status-dropdown'>
-            <select 
-              className="todo-status" 
-              value={status}
-              onChange={(e)=>setStatus(e.target.value as Status)}>
-              {
-                Object.keys(dropdownValues).map(item => (
-                  <option 
-                    key={item}
-                    value={item}
-                    >{dropdownValues[item as Status]}</option>
-                ))
-              }
-            </select>
+            <Dropdown
+              options={dropdownValues}
+              value={status as string}
+              setValue={handleStatusChange}
+            />
           </div> :
           null
         }

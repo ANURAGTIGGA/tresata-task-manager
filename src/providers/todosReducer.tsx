@@ -14,7 +14,9 @@ export function todosReducer(state: Todo[], action: Action): Todo[] {
                 if(todo.id === action.payload.id) {
                     return {
                         ...todo,
-                        status: action.payload.status
+                        title: action.payload.title || todo.title,
+                        description: action.payload.description || todo.description,
+                        status: action.payload.status || todo.status
                     }
                 } else {
                     return todo;

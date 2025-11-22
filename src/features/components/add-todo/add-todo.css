@@ -15,10 +15,3 @@ input#todo-title {
     display: flex;
     justify-content: space-between;
 }
-
-.todo-status {
-    width: 100%;
-    height: 30px;
-    border: 1px solid #dddddd;
-    margin-bottom: 1rem;
-}
