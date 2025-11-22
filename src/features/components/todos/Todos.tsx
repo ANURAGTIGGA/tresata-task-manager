@@ -13,6 +13,7 @@ const Todos = () => {
   const [editFormId, setEditFormId] = useState<string | null>(null);
   const [headerText, setHeaderText] = useState(headerTitle);
   const [icon, setIcon] = useState<string | null>(null);
+  const [searchText, setSearchText] = useState('');
 
   function handleFormOpen(): void {
     setHeaderText("Add Task");
@@ -39,7 +40,7 @@ const Todos = () => {
         <Header title={headerText} icon={icon} />
         <div className='todos-container'>
           {
-            showForm || editFormId ? null : <Search placeholder='Search To-Do' />
+            showForm || editFormId ? null : <Search placeholder='Search To-Do' handleSearchText={setSearchText} />
           }
           <div className='todos-list'>
           {
@@ -47,7 +48,7 @@ const Todos = () => {
               <AddTodo handleFromClose={handleFromClose} /> : 
               editFormId ? 
               <AddTodo handleFromClose={handleFromClose} isEdit={true} id={editFormId} /> :
-              <TodoList handleEditFormOpen={handleEditFormOpen} />
+              <TodoList searchtext={searchText} handleEditFormOpen={handleEditFormOpen} />
           }
           </div>
           <div className='add-todo'>

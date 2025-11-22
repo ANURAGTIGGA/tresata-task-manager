@@ -12,15 +12,22 @@ const initialStatus: Record<Status, boolean> = {
   'completed': true,
 };
 
-const TodoList = ({handleEditFormOpen}: {handleEditFormOpen: (id: string)=>void}) => {
+type TodoListProps = {
+    searchtext: string
+    handleEditFormOpen: (id: string)=>void
+}
+
+const TodoList = ({searchtext, handleEditFormOpen}: TodoListProps) => {
     const todos = useTodos();
+    const text = searchtext.toLowerCase();
+    const filteredTodo = searchtext ? todos?.filter(todo => todo.title.toLowerCase().includes(text) || todo.description.toLowerCase().includes(text)) : todos;
     const [isOpen, setIsOpen] = useState(initialStatus);
 
     const list = Object.keys(initialStatus);
 
-    const inprogress = todos ? todos.filter(todo=>todo.status==='in-progress') : [];
-    const pending = todos ? todos.filter(todo=>todo.status==='pending') : [];
-    const completed = todos ? todos.filter(todo=>todo.status==='completed') : [];
+    const inprogress = filteredTodo ? filteredTodo.filter(todo=>todo.status==='in-progress') : [];
+    const pending = filteredTodo ? filteredTodo.filter(todo=>todo.status==='pending') : [];
+    const completed = filteredTodo ? filteredTodo.filter(todo=>todo.status==='completed') : [];
 
     function handleAccordionClick(key: Status) {
         setIsOpen(prev => {
