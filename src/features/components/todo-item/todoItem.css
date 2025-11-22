@@ -11,6 +11,12 @@
     border-bottom: 0;
 }
 
+.todo-item:hover .todo-actions {
+    display: flex;
+}
+
+
+
 .todo-header {
     display: flex;
     gap: 1rem;
@@ -23,6 +29,10 @@
     font-size: 0.88rem;
     font-weight: 600;
     color: #034EA2;
+}
+
+.todo-title.completed {
+    text-decoration: line-through;
 }
 
 .todo-logo span {
@@ -55,7 +65,7 @@
 }
 
 .todo-actions {
-    display: flex;
+    display: none;
     gap: 0.5rem;
 }
 

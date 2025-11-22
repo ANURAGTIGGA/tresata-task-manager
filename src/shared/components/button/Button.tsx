@@ -5,15 +5,17 @@ type ButtonProps = {
     type: 'primary' | 'secondary';
     shape?: 'circle' | 'regular';
     handleClick: () => void;
+    disabled?: boolean;
 }
 
-const Button = ({text, type, shape='regular', handleClick}: ButtonProps) => {
+const Button = ({text, type, shape='regular', handleClick, disabled}: ButtonProps) => {
     const styles = `btn btn-${type} btn-${shape}`
 
     return (
         <button
-            className={styles}
+            className={disabled ? styles.concat(' disabled') : styles}
             onClick={handleClick}
+            disabled={disabled || false}
         >{text}
         </button>
     )

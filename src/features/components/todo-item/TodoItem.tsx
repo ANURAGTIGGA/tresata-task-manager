@@ -42,7 +42,7 @@ const TodoItem = ({id, title, description, status, created, onEdit}: TodoItemPro
                 <div className='todo-logo'>
                     <span>{title.split('')[0]}</span>
                 </div>
-                <div className='todo-title'>{title}</div>
+                <div className={status === 'completed' ? 'todo-title completed' : 'todo-title'}>{title}</div>
                 <div>
                     <Status type={status} />
                 </div>

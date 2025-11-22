@@ -31,6 +31,8 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
 
   const dispatch = useDispatch();
 
+  const isDisabled = title ? description ? false : true : true;
+
   function handleStatusChange(value: string) {
     setStatus(value as Status);
   }
@@ -111,8 +113,8 @@ const AddTodo = ({handleFromClose, isEdit, id}: AddTodoProps) => {
             <Button text="Cancel" type="secondary" handleClick={handleFromClose}  />
             {
               isEdit ? 
-                <Button text="UPDATE" type="primary" handleClick={onTodoUpdate}  /> :
-                <Button text="ADD" type="primary" handleClick={onTodoAdd}  />
+                <Button text="UPDATE" type="primary" handleClick={onTodoUpdate} disabled={isDisabled}  /> :
+                <Button text="ADD" type="primary" handleClick={onTodoAdd} disabled={isDisabled}  />
             }
         </div>
     </div>

@@ -11,8 +11,10 @@ type HeaderProp = {
 const Header = ({title, onBack, icon}: HeaderProp) => {
   return (
     <header>
-      {icon === 'back' && <span className='back-icon' onClick={onBack}><IoArrowBackOutline /></span>}
-      <span>{title}</span>
+      <div className='header-content'>
+        {icon === 'back' && <span className='back-icon' onClick={onBack}><IoArrowBackOutline /></span>}
+        <span>{title}</span>
+      </div>
     </header>
   )
 }
