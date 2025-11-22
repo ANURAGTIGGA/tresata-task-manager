@@ -41,3 +41,27 @@
     font-size: 0.62rem;
     color: #767676;
 }
+
+.todo-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.todo-actions .todo-action-edit, .todo-actions .todo-action-delete {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.todo-actions .todo-action-edit svg{
+    color: #034EA2;
+}
+
+.todo-actions .todo-action-delete svg{
+    color: #E32A34;
+}

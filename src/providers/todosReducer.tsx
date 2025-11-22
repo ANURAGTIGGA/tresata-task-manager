@@ -1,7 +1,7 @@
 import type { Todo } from "../features/components/todo-item/TodoItem"
 
 export type Action = { type: 'ADD_TODO'; payload: Todo }
-            | { type: 'EDIT_TODO'; payload: Todo }
+            | { type: 'EDIT_TODO'; payload: Omit<Todo, 'created'> }
             | { type: 'DELETE_TODO'; payload: string };
 
 export function todosReducer(state: Todo[], action: Action): Todo[] {

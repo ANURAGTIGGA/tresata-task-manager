@@ -6,13 +6,13 @@ import './todos.css';
 import AddTodo from '../add-todo/AddTodo';
 import Header from '../../../shared/components/header/Header';
 
-const headerTitle = "to-do app";
+const headerTitle = "TO-DO APP";
 
 const Todos = () => {
   const [showForm, setShowForm] = useState(false);
+  const [editFormId, setEditFormId] = useState<string | null>(null);
   const [headerText, setHeaderText] = useState(headerTitle);
   const [icon, setIcon] = useState<string | null>(null);
-
 
   function handleFormOpen(): void {
     setHeaderText("Add Task");
@@ -24,6 +24,14 @@ const Todos = () => {
     setHeaderText(headerTitle);
     setIcon(null);
     setShowForm(false);
+    setEditFormId(null);
+  }
+
+  function handleEditFormOpen(id: string): void {
+    console.log("edit clicked in todos", id)
+    setHeaderText("Edit Task");
+    setIcon("back");
+    setEditFormId(id);
   }
   
   return (
@@ -31,16 +39,20 @@ const Todos = () => {
         <Header title={headerText} icon={icon} />
         <div className='todos-container'>
           {
-            showForm ? null : <Search placeholder='Search To-Do' />
+            showForm || editFormId ? null : <Search placeholder='Search To-Do' />
           }
           <div className='todos-list'>
           {
-            showForm ? <AddTodo handleFromClose={handleFromClose} /> : <TodoList />
+            showForm ? 
+              <AddTodo handleFromClose={handleFromClose} /> : 
+              editFormId ? 
+              <AddTodo handleFromClose={handleFromClose} isEdit={true} id={editFormId} /> :
+              <TodoList handleEditFormOpen={handleEditFormOpen} />
           }
           </div>
           <div className='add-todo'>
           {
-            showForm ? null : <Button text="+" type="primary" shape="circle" handleClick={handleFormOpen} />
+            showForm || editFormId ? null : <Button text="+" type="primary" shape="circle" handleClick={handleFormOpen} />
           }
           </div>
         </div>

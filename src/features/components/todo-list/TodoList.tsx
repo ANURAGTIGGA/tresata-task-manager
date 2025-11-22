@@ -4,7 +4,7 @@ import { useTodos } from "../../../shared/hooks";
 import Accordion from "../../../shared/components/accordion/Accordion";
 import './todo-list.css';
 
-type Status = 'in-progress' | 'pending' | 'completed';
+export type Status = 'in-progress' | 'pending' | 'completed';
 
 const initialStatus: Record<Status, boolean> = {
   'in-progress': true,
@@ -12,7 +12,7 @@ const initialStatus: Record<Status, boolean> = {
   'completed': true,
 };
 
-const TodoList = () => {
+const TodoList = ({handleEditFormOpen}: {handleEditFormOpen: (id: string)=>void}) => {
     const todos = useTodos();
     const [isOpen, setIsOpen] = useState(initialStatus);
 
@@ -31,13 +31,17 @@ const TodoList = () => {
         })
     }
 
+    function handleEditTodo(id: string) {
+        handleEditFormOpen(id);
+    }
+
     return (
         <>
         {
             list.map((item) => {
                 const value = item === 'in-progress' ? inprogress : item === 'pending' ? pending : completed;
                 return (
-                <div className="status-container">
+                <div key={item} className="status-container">
                     <Accordion
                         name={item}
                         size={value.length}
@@ -47,7 +51,7 @@ const TodoList = () => {
                         <ul>
                             {
                                 value.map(todo => (
-                                    <TodoItem key={todo.id} {...todo} />
+                                    <TodoItem key={todo.id} {...todo} onEdit={handleEditTodo} />
                                 ))
                             }
                         </ul>
