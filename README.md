@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# [ Assignment | Senior Frontend Engineer - Tresata ]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App name: tresata-task-manager
 
-Currently, two official plugins are available:
+Deployed App link: https://tresata-task-manager.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Author : Anurag Aron Tigga
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Steps to run the project locally
 
-## Expanding the ESLint configuration
+Clone this repo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Make sure you use node version 20 or higher
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run the following command one after the other
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm install
+npm run dev
 ```
+
+Visit the port at which the app has started running
+
+
+## Tech Stack - React + TypeScript + Vite
+
+React - It uses component based architecture and promotes code reusability and simplifies the creation of complex user interfaces. It also offers performance benefits through its use of a Virtual DOM for faster rendering.
+
+Typescript - Type safety along with code quality, reliability and readability. It's also good for scalability and maintainability.
+
+Vite - It is a modern build tool and development server designed to provide a faster and more efficient development experience. Fast project setup and optimized builds.
